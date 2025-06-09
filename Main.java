@@ -10,14 +10,17 @@ public class Main {
         RdP redDePetri = new RdP();
         logger.logInfo("Red de Petri construida exitosamente.");
         
-        logger.logDebug("Mostrando el estado inicial de la Red de Petri:");
+        logger.logInfo("Mostrando el estado inicial de la Red de Petri:");
         redDePetri.mostrarEstado();
         
         logger.logInfo("Fin de la ejecución del programa.");
         
-        logger.logDebug("Estado final de la Red de Petri:");
+        logger.logInfo("Estado final de la Red de Petri:");
         redDePetri.mostrarEstado();
         
         logger.logInfo("Programa finalizado correctamente.");
+
+        logger.logError("null pointer exception");
+        logger.cerrar();
     }
 }
