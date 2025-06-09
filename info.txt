@@ -1,0 +1,4 @@
+[2025-06-08T22:29:04.121257] [INFO] Iniciando la construcción de la Red de Petri...
+[2025-06-08T22:29:04.134656] [INFO] Red de Petri construida exitosamente.
+[2025-06-08T22:29:04.158494] [INFO] Fin de la ejecución del programa.
+[2025-06-08T22:29:04.159332] [INFO] Programa finalizado correctamente.

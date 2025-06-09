@@ -1,0 +1,2 @@
+[2025-06-08T22:29:04.134876] [DEBUG] Mostrando el estado inicial de la Red de Petri:
+[2025-06-08T22:29:04.158743] [DEBUG] Estado final de la Red de Petri:
