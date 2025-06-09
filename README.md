@@ -1,3 +1,3 @@
 # TP2-Concurrente
-javac Main // Para compilar
+javac */*.java *.java // Para compilar
 java Main // Paja correr

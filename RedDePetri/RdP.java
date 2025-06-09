@@ -1,8 +1,8 @@
 package RedDePetri;
-
 import java.util.Map;
 
 import Logger.Logger;
+import Monitor.Monitor;
 
 public class RdP {
     Plazas plazas;
@@ -30,7 +30,7 @@ public class RdP {
         plazas.agregarPlaza(10, 0);
         plazas.agregarPlaza(11, 0);
 
-        Transicion t0 = new Transicion(0, Map.of(1, 1), Map.of(0, 1));
+        Transicion t0 = new Transicion(0, Map.of(1, 1), Map.of(0, 1, 2, 1));
 
         Transicion t1 = new Transicion(1, Map.of(3, 1, 2, 1), Map.of(1, 1));
 
@@ -69,6 +69,20 @@ public class RdP {
         transiciones.put(11, t11);
 
         logger.logInfo("Se ha construido la Red de Petri con las plazas y transiciones definidas.");
+
+        System.out.println("Estado inicial de las plazas:");
+        mostrarEstado();
+
+        Monitor monitor = new Monitor(plazas, transiciones);
+        monitor.fireTransition(0);
+        monitor.fireTransition(1);
+        monitor.fireTransition(0);
+        monitor.fireTransition(1);
+        monitor.fireTransition(0);
+        monitor.fireTransition(1);
+        monitor.fireTransition(5);
+        monitor.fireTransition(6);
+        monitor.fireTransition(11);
     }
 
     public void mostrarEstado() {

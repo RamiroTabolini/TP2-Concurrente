@@ -45,7 +45,7 @@ public class Plazas {
             throw new IllegalArgumentException("La cantidad de tokens a agregar no puede ser negativa.");
         }
         tokensPorPlaza.put(idPlaza, obtenerCantidadTokensPorPlaza(idPlaza) + cantidadTokens);
-        logger.logInfo("Se han agregado " + cantidadTokens + " tokens a la plaza " + idPlaza + ".");
+        //logger.logInfo("Se han agregado " + cantidadTokens + " tokens a la plaza " + idPlaza + ".");
     }
 
     public void eliminarTokensPorPlaza(Integer idPlaza, Integer cantidadTokens) {
@@ -53,7 +53,7 @@ public class Plazas {
             int tokensActuales = tokensPorPlaza.get(idPlaza);
             if (tokensActuales >= cantidadTokens) {
                 tokensPorPlaza.put(idPlaza, tokensActuales - cantidadTokens);
-                logger.logInfo("Se han eliminado " + cantidadTokens + " tokens de la plaza " + idPlaza + ".");
+                //logger.logInfo("Se han eliminado " + cantidadTokens + " tokens de la plaza " + idPlaza + ".");
             } else {
                 logger.logError("Intento de eliminar más tokens de los que hay en la plaza " + idPlaza + ": " + cantidadTokens + " solicitados, " + tokensActuales + " disponibles.");
                 throw new IllegalArgumentException("No hay suficientes tokens en la plaza " + idPlaza);

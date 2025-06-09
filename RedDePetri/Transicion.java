@@ -1,5 +1,4 @@
 package RedDePetri;
-
 import java.util.Map;
 
 import Logger.Logger;
@@ -38,10 +37,10 @@ public class Transicion {
             logger.logError("Intento de disparar una transición con plazas nulas.");
             throw new IllegalArgumentException("Las plazas no pueden ser nulas.");
         }
-        if (!puedeDispararse(plazas)) {
-            logger.logError("La transición " + idTransicion + " no puede dispararse debido a la falta de tokens en las plazas requeridas.");
-            throw new IllegalStateException("La transición " + idTransicion + " no puede dispararse debido a la falta de tokens en las plazas requeridas.");
-        }
+        //if (!puedeDispararse(plazas)) {
+        //    logger.logError("La transición " + idTransicion + " no puede dispararse debido a la falta de tokens en las plazas requeridas.");
+        //    throw new IllegalStateException("La transición " + idTransicion + " no puede dispararse debido a la falta de tokens en las plazas requeridas.");
+        //}
         for (Map.Entry<Integer, Integer> entry : preIncidencia.entrySet()) {
             Integer idPlaza = entry.getKey();
             Integer cantidadTokensNecesarios = entry.getValue();

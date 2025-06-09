@@ -10,14 +10,15 @@ public class Logger {
     private PrintWriter infoWriter;
 
     private static Logger instance;
+    private static final Object lock = new Object();
 
     private static final String LOG_FILE = "log.txt"; // aqui se guardan todos los logs
-    private static final String ERROR_FILE = "error.txt"; // aqui se guardan los errores 
+    private static final String ERROR_FILE = "error.txt"; // aqui se guardan los errores
     private static final String INFO_FILE = "info.txt"; // aqui se guardan los logs de info
 
     private Logger() {
         try {
-            writer = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILE, false))); // false para sobrescribir el archivo
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILE, false)));
             errorWriter = new PrintWriter(new BufferedWriter(new FileWriter(ERROR_FILE, false)));
             infoWriter = new PrintWriter(new BufferedWriter(new FileWriter(INFO_FILE, false)));
             logInfo(LOG_FILE + " y " + ERROR_FILE + " y " + INFO_FILE + " han sido creados.");
@@ -28,23 +29,35 @@ public class Logger {
 
     public static Logger getInstance() {
         if (instance == null) {
-            instance = new Logger();
+            synchronized (lock) {
+                if (instance == null) {
+                    try {
+                        instance = new Logger();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            
         }
         return instance;
     }
 
-    public void log(String tipo, String mensaje){
+    public synchronized void log(String tipo, String mensaje) {
 
         String time = java.time.LocalDateTime.now().toString();
-        String logLine = String.format("[%s] [%s] %s", time, tipo, mensaje);
-        
+        String logLine = String.format("[%s] - [%s] - [%s] : %s", Thread.currentThread().getName(), time, tipo, mensaje);
+
+
         try {
             switch (tipo) {
                 case "ERROR":
                     errorWriter.println(logLine);
+                    errorWriter.flush();
                     break;
                 case "INFO":
                     infoWriter.println(logLine);
+                    infoWriter.flush();
                     break;
             }
             writer.println(logLine);
@@ -62,12 +75,16 @@ public class Logger {
         log("INFO", mensaje);
     }
 
-    public void cerrar() {
-        if (writer != null) {
+    public synchronized void cerrar() {
+        if (writer != null && errorWriter != null && infoWriter != null) {
+            logInfo("Cerrando Logger y liberando recursos.");
+            writer.flush();
+            infoWriter.flush();
+
             writer.close();
             errorWriter.close();
             infoWriter.close();
         }
     }
-    
+
 }
