@@ -20,6 +20,7 @@ public class Logger {
             writer = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILE, false))); // false para sobrescribir el archivo
             errorWriter = new PrintWriter(new BufferedWriter(new FileWriter(ERROR_FILE, false)));
             infoWriter = new PrintWriter(new BufferedWriter(new FileWriter(INFO_FILE, false)));
+            logInfo(LOG_FILE + " y " + ERROR_FILE + " y " + INFO_FILE + " han sido creados.");
         } catch (Exception e) {
             e.printStackTrace();
         }

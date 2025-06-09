@@ -2,11 +2,15 @@ package RedDePetri;
 
 import java.util.Map;
 
+import Logger.Logger;
+
 public class RdP {
     Plazas plazas;
     Map<Integer, Transicion> transiciones;
+    private static final Logger logger = Logger.getInstance();
 
     public RdP() {
+        logger.logInfo("Se ha creado una nueva instancia de la Red de Petri.");
         construirRdP();
     }
 
@@ -64,6 +68,7 @@ public class RdP {
         transiciones.put(10, t10);
         transiciones.put(11, t11);
 
+        logger.logInfo("Se ha construido la Red de Petri con las plazas y transiciones definidas.");
     }
 
     public void mostrarEstado() {
